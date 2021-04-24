@@ -1,0 +1,2 @@
+# djsite
+selfedu - Django project

@@ -1,0 +1,14 @@
+{% extends 'women/base.html' %}
+
+{% block title %} Asosiy sahifa {% endblock %}
+
+{% block content %}
+<ul class="list-articles">
+    {% for p in posts %}
+        <li><h2>{{ p.title }}</h2>
+        <p>{{ p.content }}</p>
+        <div class="clear"></div>
+        <p class="link-read-post"><a href="#">Batafsil o'qish</a></p></li>
+    {% endfor %}
+</ul>
+{% endblock %}

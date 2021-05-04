@@ -6,9 +6,11 @@
 <ul class="list-articles">
     {% for p in posts %}
         <li><h2>{{ p.title }}</h2>
-        <p>{{ p.content }}</p>
+        {% autoescape off %}
+        <p>{{ p.content|linebreaks|truncatewords:50 }}</p>
+        {% endautoescape %}
         <div class="clear"></div>
-        <p class="link-read-post"><a href="#">Batafsil o'qish</a></p></li>
+        <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Batafsil o'qish</a></p></li>
     {% endfor %}
 </ul>
 {% endblock %}

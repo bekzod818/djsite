@@ -8,8 +8,11 @@
         <li>
           <div class="article-panel">
             <p class="first">Kategoriya: {{p.cat}}</p>
-            <p class="last">Sana: {{p.time_update|date:"d-m-y H:i:s"}}</p>  
+            <p class="last">Sana: {{p.time_update|date:"d-m-y H:i:s"}}</p>
           </div>
+          {% if p.photo %}
+            <p><img class="img-article-left thumb" src="{{p.photo.url}}" alt="{{p.title}}"></p>
+          {% endif %}
         <h2>{{ p.title }}</h2>
         {% autoescape off %}
         <p>{{ p.content|linebreaks|truncatewords:50 }}</p>

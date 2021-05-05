@@ -1,4 +1,5 @@
 {% load static %}
+{% load women_tags %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -35,6 +36,7 @@
   <tr>
   <!-- Sidebar left -->
   	<td valign="top" class="left-chapters">
+      {% get_categories as categories %}
   	<ul id="leftchapters">
   {% if cat_selected == 0 %}
   		<li class="selected">Kategoriyalar</li>
@@ -42,7 +44,7 @@
   		<li><a href="{% url 'home' %}">Kategoriyalar</a></li>
   {% endif %}
 
-  {% for c in cats %}
+  {% for c in categories %}
   	{% if c.pk == cat_selected %}
   		<li class="selected">{{c.name}}</li>
   	{% else %}

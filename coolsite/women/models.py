@@ -2,14 +2,18 @@ from django.db import models
 from django.urls import reverse
 
 class Women(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length = 250)
-    content = models.TextField(blank = True)
-    photo = models.ImageField(upload_to = 'photos/%Y/%m/%d/')
-    time_create = models.DateTimeField(auto_now_add = True)
-    time_update = models.DateTimeField(auto_now = True)
-    is_published = models.BooleanField(default = True)
-    cat = models.ForeignKey('Category', on_delete = models.PROTECT, null=True)
+    title = models.CharField(max_length = 250, verbose_name = 'Sarlavha')
+    content = models.TextField(blank = True, verbose_name = 'Matn')
+    photo = models.ImageField(upload_to = 'photos/%Y/%m/%d/', verbose_name = 'Rasm')
+    time_create = models.DateTimeField(auto_now_add = True, verbose_name = 'Yaratilgan sana')
+    time_update = models.DateTimeField(auto_now = True, verbose_name = "O'zgartirilgan sana")
+    is_published = models.BooleanField(default = True, verbose_name = 'Publikatsiya')
+    cat = models.ForeignKey('Category', on_delete = models.PROTECT, null=True, verbose_name = 'Kategoriya')
+
+    class Meta:
+        verbose_name = 'Mashhur ayol'
+        verbose_name_plural = 'Mashhur ayollar'
+        ordering = ['-time_update']
 
     def __str__(self):
         return self.title
@@ -18,7 +22,12 @@ class Women(models.Model):
         return reverse('post', kwargs = {'post_id': self.pk})
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, db_index=True)
+    name = models.CharField(max_length=100, db_index=True, verbose_name = 'Kategoriya')
+
+    class Meta:
+        verbose_name = 'Kategoriya'
+        verbose_name_plural = 'Kategoriyalar'
+        ordering = ['id']
 
     def __str__(self):
         return self.name

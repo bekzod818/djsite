@@ -36,7 +36,6 @@
   <tr>
   <!-- Sidebar left -->
   	<td valign="top" class="left-chapters">
-      {% get_categories as categories %}
   	<ul id="leftchapters">
   {% if cat_selected == 0 %}
   		<li class="selected">Kategoriyalar</li>
@@ -44,17 +43,11 @@
   		<li><a href="{% url 'home' %}">Kategoriyalar</a></li>
   {% endif %}
 
-  {% for c in categories %}
-  	{% if c.pk == cat_selected %}
-  		<li class="selected">{{c.name}}</li>
-  	{% else %}
-  		<li><a href="{{ c.get_absolute_url }}"> {{ c.name }}</a></li>
-  	{% endif %}
-  {% endfor %}
+  {% show_categories cat_selected=cat_selected %}
 
   		<li class="share">
   		<p>Kanalimiz</p>
-  		<a class="share-yt" href="#" target="_blank" rel="nofollow"></a>
+  		<a class="share-yt" href="https://www.youtube.com/channel/UChL66C1F7dWGCIaOCXHzvuQ" target="_blank" rel="nofollow"></a>
   		</li>
   	</ul>
   </td>

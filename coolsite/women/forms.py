@@ -15,9 +15,9 @@ class AddPostForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'cols': 60, 'rows': 10})
         }
 
-    def clean_title(self):
-        title = self.cleaned_title['title']
-        if len(title) > 200:
-            raise ValidationError('Uzunlik 200 belgidan oshmasin.')
-
-        return title
+    # def clean_title(self):
+    #     title = self.cleaned_title['title']
+    #     if len(title) > 200:
+    #         raise ValidationError('Uzunlik 200 belgidan oshmasin.')
+    #
+    #     return title

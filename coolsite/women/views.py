@@ -12,6 +12,7 @@ menu = [
     {'title': 'Kirish', 'url_name': 'login'}
 ]
 
+
 class WomenHome(ListView):
     model = Women
     template_name = 'women/index.html'
@@ -43,6 +44,7 @@ class WomenHome(ListView):
 def about(request):
     return render(request, 'women/about.html', {'menu': menu, 'title': 'Biz haqimizda'})
 
+
 # def add_page(request):
 #     if request.method == 'POST':
 #         form = AddPostForm(request.POST, request.FILES)
@@ -59,17 +61,20 @@ class AddPage(CreateView):
     template_name = 'women/addpage.html'
     success_url = reverse_lazy('home')
 
-    def get_context_data(self, *, object_list = None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Maqola qo\'shish'
         context['menu'] = menu
         return context
 
+
 def contact(request):
     return render(request, 'women/contact.html', {'menu': menu})
 
+
 def login(request):
     return render(request, 'women/login.html', {'menu': menu})
+
 
 class WomenCategory(ListView):
     model = Women
@@ -80,12 +85,13 @@ class WomenCategory(ListView):
     def get_queryset(self):
         return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
-    def get_context_data(self, *, object_list = None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Kategoriya - ' + str(context['posts'][0].cat)
         context['menu'] = menu
         context['cat_selected'] = context['posts'][0].cat_id
         return context
+
 
 # def show_category(request, cat_id):
 #     posts = Women.objects.filter(cat_id = cat_id)
@@ -109,10 +115,10 @@ class ShowPost(DetailView):
     slug_url_kwarg = 'post_slug'
     context_object_name = 'post'
 
-    def get_context_data(self, *, object_list = None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['post']
-        context['menu'] =  menu
+        context['menu'] = menu
         return context
 
 
@@ -132,12 +138,14 @@ def categories(request, cat):
         print(request.GET)
     return HttpResponse(f'<h1>Categories page</h1><p>Slug: {cat}</p>')
 
+
 def archive(request, year):
     if int(year) > 2021:
         # raise Http404()
-        return redirect('home', permanent = False) # True bo'lsa 301, False bo'lsa 302
+        return redirect('home', permanent=False)  # True bo'lsa 301, False bo'lsa 302
 
     return HttpResponse(f'<h1>Arxiv malumotlar</h1><p>Year: {year}</p>')
+
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Bunday sahifa topilmadi</h1>')

@@ -5,7 +5,6 @@ menu = [
     {'title': 'Sayt haqida', 'url_name': 'about'},
     {'title': "Qo'shish", 'url_name': 'add_page'},
     {'title': 'Aloqa', 'url_name': 'contact'},
-    {'title': 'Kirish', 'url_name': 'login'}
 ]
 
 
